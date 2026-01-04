@@ -49,6 +49,9 @@ class CityResource extends Resource
         return $table
             ->columns([
                 //
+                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('slug'),
             ])
             ->filters([
                 //
