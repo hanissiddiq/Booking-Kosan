@@ -1,4 +1,4 @@
-# 📸 Sistem Reservasi Photo (Sirapo)
+# 📸 Sistem Informasi Sewa Kosan (Ngekos)
 
 Ngekos adalah aplikasi berbasis web yang digunakan untuk melakukan pencarian kos-kosan terbaik.  
 Aplikasi ini dibangun menggunakan **Laravel 11**, **MySQL**, **PHP 8.2**, dan **CSS** untuk styling dasar dan juga **Filament** untuk CMS Admin.
@@ -93,6 +93,7 @@ Akses aplikasi melalui [http://localhost:8000](http://localhost:8000)
 
 ## 👥 Roles Default
 - **Admin**
+  - Akses http://localhost:8000/admin
   - Email: `admin@ngekos.com`
   - Password: `password`
 
