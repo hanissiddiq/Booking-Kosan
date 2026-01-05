@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 04, 2026 at 04:27 AM
--- Server version: 8.0.30
--- PHP Version: 8.2.28
+-- Generation Time: Jan 05, 2026 at 02:38 AM
+-- Server version: 8.4.3
+-- PHP Version: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,6 +69,16 @@ CREATE TABLE `cache` (
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('356a192b7913b04c54574d18c28d46e6395428ab', 'i:1;', 1767580611),
+('356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1767580611;', 1767580611),
+('livewire-rate-limiter:a17961fa74e9275d529f489537f179c05d50c2f3', 'i:1;', 1767579072),
+('livewire-rate-limiter:a17961fa74e9275d529f489537f179c05d50c2f3:timer', 'i:1767579072;', 1767579072);
+
 -- --------------------------------------------------------
 
 --
@@ -110,6 +120,15 @@ CREATE TABLE `cities` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cities`
+--
+
+INSERT INTO `cities` (`id`, `image`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'cities/01KE5ZXJ8ZETWGW1D23FCQ2XBX.png', 'Banda Aceh', 'banda-aceh', '2026-01-04 19:31:29', '2026-01-04 19:31:29'),
+(2, 'cities/01KE602DEFJ8M9241A8H7BDPJ3.jpg', 'Medan', 'medan', '2026-01-04 19:34:08', '2026-01-04 19:34:08'),
+(3, 'cities/01KE605VPYVC4FVJ9PH3B5D14W.png', 'Padang', 'padang', '2026-01-04 19:36:01', '2026-01-04 19:36:01');
 
 -- --------------------------------------------------------
 
@@ -182,14 +201,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '0001_01_01_000000_create_users_table', 1),
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2026_01_04_033657_create_cities_table', 2),
-(5, '2026_01_04_033738_create_categories_table', 2),
-(6, '2026_01_04_033804_create_boarding_houses_table', 2),
-(7, '2026_01_04_033829_create_rooms_table', 2),
-(8, '2026_01_04_033845_create_room_images_table', 2),
-(9, '2026_01_04_033901_create_bonuses_table', 2),
-(10, '2026_01_04_033914_create_testimonials_table', 2),
-(11, '2026_01_04_033935_create_transactions_table', 2);
+(4, '2026_01_04_033657_create_cities_table', 1),
+(5, '2026_01_04_033738_create_categories_table', 1),
+(6, '2026_01_04_033804_create_boarding_houses_table', 1),
+(7, '2026_01_04_033829_create_rooms_table', 1),
+(8, '2026_01_04_033845_create_room_images_table', 1),
+(9, '2026_01_04_033901_create_bonuses_table', 1),
+(10, '2026_01_04_033914_create_testimonials_table', 1),
+(11, '2026_01_04_033935_create_transactions_table', 1);
 
 -- --------------------------------------------------------
 
@@ -255,7 +274,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('f7KNtklDFVPdj8SXrY2NuokxORpS7HeE0p4vv9aN', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWnBEVnZ0SjBtWW5LMXNzMGluNVMyaTVkNVhmeld5aXJ6YURkUkhlTyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1767497410);
+('Fypu530vMdIHf3JQEo3rRzx2YhS4ydAATseL7BWc', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoib2lqUU9EalRaNXQ0c2JWSmI1MWJvUlZzOHB2dlFlVGJEQjBzUmt5aCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jaXRpZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEyJDN0SXhUNVRkSDNSa1BCa2M3Q3hidmUvMjVXZkY1SW8zYkd2RmViOXJQTnNrYWpJeDBnV3Y2IjtzOjg6ImZpbGFtZW50IjthOjA6e319', 1767580565);
 
 -- --------------------------------------------------------
 
@@ -313,6 +332,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@ngekos.com', NULL, '$2y$12$3tIxT5TdH3RkPBkc7Cxbve/25WfF5Io3bGvFeb9rPNskajIx0gWv6', NULL, '2026-01-04 19:05:45', '2026-01-04 19:05:45');
 
 --
 -- Indexes for dumped tables
@@ -459,7 +485,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -507,7 +533,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
