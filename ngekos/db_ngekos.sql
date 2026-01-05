@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 05, 2026 at 02:56 AM
+-- Generation Time: Jan 05, 2026 at 06:25 AM
 -- Server version: 8.4.3
 -- PHP Version: 8.2.27
 
@@ -41,6 +41,13 @@ CREATE TABLE `boarding_houses` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `boarding_houses`
+--
+
+INSERT INTO `boarding_houses` (`id`, `name`, `slug`, `thumbnail`, `city_id`, `category_id`, `description`, `price`, `address`, `created_at`, `updated_at`) VALUES
+(5, 'Hotel Diana', 'hotel-diana', 'boarding_house/01KE68254KCEG9BPCJ6A6X7VQX.png', 1, 1, '<p>Hotel yang bagus booking untuk perjalan dinas sekitaran lhokseumawe Aceh</p>', 400000, 'jalan Kenangan Cunda Lhokseumawe', '2026-01-04 21:53:48', '2026-01-04 21:53:48');
+
 -- --------------------------------------------------------
 
 --
@@ -50,12 +57,19 @@ CREATE TABLE `boarding_houses` (
 CREATE TABLE `bonuses` (
   `id` bigint UNSIGNED NOT NULL,
   `boarding_house_id` bigint UNSIGNED NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bonuses`
+--
+
+INSERT INTO `bonuses` (`id`, `boarding_house_id`, `image`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 5, 'bonuses/01KE68ZVDZ0MMJ6BVA1EK06VQS.png', 'Wifi', '<p>Wifi Gratis dengan kecepatan 100Mbps</p>', '2026-01-04 22:10:01', '2026-01-04 22:10:01');
 
 -- --------------------------------------------------------
 
@@ -74,10 +88,10 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('356a192b7913b04c54574d18c28d46e6395428ab', 'i:2;', 1767581774),
-('356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1767581774;', 1767581774),
-('livewire-rate-limiter:a17961fa74e9275d529f489537f179c05d50c2f3', 'i:1;', 1767579072),
-('livewire-rate-limiter:a17961fa74e9275d529f489537f179c05d50c2f3:timer', 'i:1767579072;', 1767579072);
+('356a192b7913b04c54574d18c28d46e6395428ab', 'i:2;', 1767589922),
+('356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1767589922;', 1767589922),
+('livewire-rate-limiter:a17961fa74e9275d529f489537f179c05d50c2f3', 'i:1;', 1767590214),
+('livewire-rate-limiter:a17961fa74e9275d529f489537f179c05d50c2f3:timer', 'i:1767590214;', 1767590214);
 
 -- --------------------------------------------------------
 
@@ -111,11 +125,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `image`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(4, 'categories/01KE6134ZB9BQMJQRFJ3SMCPAV.png', 'Hotel', 'hotel', '2026-01-04 19:52:00', '2026-01-04 19:52:00'),
-(5, 'categories/01KE613ZNMDE6WK5AVKZ7KWZXT.png', 'Villa', 'villa', '2026-01-04 19:52:28', '2026-01-04 19:52:28'),
-(6, 'categories/01KE615965H8NXGYG3VXQYWXD5.png', 'Apartemen', 'apartemen', '2026-01-04 19:53:10', '2026-01-04 19:53:10'),
-(7, 'categories/01KE619518YJQCX8S2DB4YGWCR.png', 'Guest House', 'guest-house', '2026-01-04 19:55:17', '2026-01-04 19:55:17'),
-(8, 'categories/01KE61AHBTF20ZKG4JATPMNNSS.png', 'Kos', 'kos', '2026-01-04 19:56:02', '2026-01-04 19:56:02');
+(1, 'categories/01KE65DCBT7GVVDFRJWQZQHPWQ.png', 'Hotel', 'hotel', '2026-01-04 21:07:30', '2026-01-04 21:07:30'),
+(2, 'categories/01KE65DX3JRMQVZ4HDY15CZCZ9.png', 'Villa', 'villa', '2026-01-04 21:07:47', '2026-01-04 21:07:47'),
+(3, 'categories/01KE65EE17KT9HFKYWA90WFHB2.png', 'Apartemen', 'apartemen', '2026-01-04 21:08:04', '2026-01-04 21:08:04'),
+(4, 'categories/01KE65EX661AFX73D8919X987A.png', 'Guest House', 'guest-house', '2026-01-04 21:08:20', '2026-01-04 21:08:20'),
+(5, 'categories/01KE65FFWVED75B04WR39FMVM5.png', 'Kos', 'kos', '2026-01-04 21:08:39', '2026-01-04 21:08:39');
 
 -- --------------------------------------------------------
 
@@ -137,9 +151,9 @@ CREATE TABLE `cities` (
 --
 
 INSERT INTO `cities` (`id`, `image`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'cities/01KE5ZXJ8ZETWGW1D23FCQ2XBX.png', 'Banda Aceh', 'banda-aceh', '2026-01-04 19:31:29', '2026-01-04 19:31:29'),
-(2, 'cities/01KE602DEFJ8M9241A8H7BDPJ3.jpg', 'Medan', 'medan', '2026-01-04 19:34:08', '2026-01-04 19:34:08'),
-(3, 'cities/01KE605VPYVC4FVJ9PH3B5D14W.png', 'Padang', 'padang', '2026-01-04 19:36:01', '2026-01-04 19:36:01');
+(1, 'cities/01KE65BYE2FM4T5S7Y8CHR6FN6.png', 'Banda Aceh', 'banda-aceh', '2026-01-04 21:06:43', '2026-01-04 21:06:43'),
+(2, 'cities/01KE65CGF241ZC3XE4SZ02WREV.jpg', 'Medan', 'medan', '2026-01-04 21:07:01', '2026-01-04 21:07:01'),
+(3, 'cities/01KE65CY3FFX8DWRSN9GG2N4E3.png', 'Padang', 'padang', '2026-01-04 21:07:15', '2026-01-04 21:07:15');
 
 -- --------------------------------------------------------
 
@@ -245,11 +259,19 @@ CREATE TABLE `rooms` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `room_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `square_feet` int NOT NULL,
+  `capacity` int NOT NULL,
   `price_per_month` int NOT NULL,
   `is_available` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `boarding_house_id`, `name`, `room_type`, `square_feet`, `capacity`, `price_per_month`, `is_available`, `created_at`, `updated_at`) VALUES
+(1, 5, 'Kamar Deluxe', 'A', 20, 2, 2000000, 1, '2026-01-04 22:10:01', '2026-01-04 22:11:11');
 
 -- --------------------------------------------------------
 
@@ -260,10 +282,18 @@ CREATE TABLE `rooms` (
 CREATE TABLE `room_images` (
   `id` bigint UNSIGNED NOT NULL,
   `room_id` bigint UNSIGNED NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `room_images`
+--
+
+INSERT INTO `room_images` (`id`, `room_id`, `image`, `created_at`, `updated_at`) VALUES
+(1, 1, 'rooms/01KE691ZT1DSQM5A9X7V9FGD7W.png', '2026-01-04 22:10:01', '2026-01-04 22:11:11'),
+(2, 1, 'rooms/01KE691ZT3SSK265BYTKQ9NCNZ.png', '2026-01-04 22:11:11', '2026-01-04 22:11:11');
 
 -- --------------------------------------------------------
 
@@ -285,7 +315,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('Fypu530vMdIHf3JQEo3rRzx2YhS4ydAATseL7BWc', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoib2lqUU9EalRaNXQ0c2JWSmI1MWJvUlZzOHB2dlFlVGJEQjBzUmt5aCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jYXRlZ29yaWVzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMiQzdEl4VDVUZEgzUmtQQmtjN0N4YnZlLzI1V2ZGNUlvM2JHdkZlYjlyUE5za2FqSXgwZ1d2NiI7czo4OiJmaWxhbWVudCI7YTowOnt9fQ==', 1767581765);
+('40tQulpH8Q2Oo3G9CDS4bktVybd31YIP5RssIn3I', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiNGlmTDFNd3lMaDliUkdSY1BhcTV4d3pvRkNjdlpCTXd1QnNKUXh4ZCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQzOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vYm9hcmRpbmctaG91c2VzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEyJDN0SXhUNVRkSDNSa1BCa2M3Q3hidmUvMjVXZkY1SW8zYkd2RmViOXJQTnNrYWpJeDBnV3Y2Ijt9', 1767590289),
+('7A75tEBDPPXmPPE9lUIS2i0NkNBFN3xKdHK1tLA1', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiOUk0MTdBVVdjUHYxOWFhb01zNTR4ajVpcm5rWnU1ZmVnSEh3R0tobiI7czozOiJ1cmwiO2E6MDp7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQzOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vYm9hcmRpbmctaG91c2VzIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEyJDN0SXhUNVRkSDNSa1BCa2M3Q3hidmUvMjVXZkY1SW8zYkd2RmViOXJQTnNrYWpJeDBnV3Y2IjtzOjg6ImZpbGFtZW50IjthOjA6e319', 1767594311);
 
 -- --------------------------------------------------------
 
@@ -349,7 +380,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@ngekos.com', NULL, '$2y$12$3tIxT5TdH3RkPBkc7Cxbve/25WfF5Io3bGvFeb9rPNskajIx0gWv6', NULL, '2026-01-04 19:05:45', '2026-01-04 19:05:45');
+(1, 'admin', 'admin@ngekos.com', '2026-01-04 20:53:42', '$2y$12$3tIxT5TdH3RkPBkc7Cxbve/25WfF5Io3bGvFeb9rPNskajIx0gWv6', 'kcolwZTYYt', '2026-01-04 20:53:42', '2026-01-04 20:53:42');
 
 --
 -- Indexes for dumped tables
@@ -478,19 +509,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `boarding_houses`
 --
 ALTER TABLE `boarding_houses`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `bonuses`
 --
 ALTER TABLE `bonuses`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -520,13 +551,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `room_images`
 --
 ALTER TABLE `room_images`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
@@ -554,39 +585,39 @@ ALTER TABLE `users`
 -- Constraints for table `boarding_houses`
 --
 ALTER TABLE `boarding_houses`
-  ADD CONSTRAINT `boarding_houses_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `boarding_houses_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`);
+  ADD CONSTRAINT `boarding_houses_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `boarding_houses_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `bonuses`
 --
 ALTER TABLE `bonuses`
-  ADD CONSTRAINT `bonuses_boarding_house_id_foreign` FOREIGN KEY (`boarding_house_id`) REFERENCES `boarding_houses` (`id`);
+  ADD CONSTRAINT `bonuses_boarding_house_id_foreign` FOREIGN KEY (`boarding_house_id`) REFERENCES `boarding_houses` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `rooms`
 --
 ALTER TABLE `rooms`
-  ADD CONSTRAINT `rooms_boarding_house_id_foreign` FOREIGN KEY (`boarding_house_id`) REFERENCES `boarding_houses` (`id`);
+  ADD CONSTRAINT `rooms_boarding_house_id_foreign` FOREIGN KEY (`boarding_house_id`) REFERENCES `boarding_houses` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `room_images`
 --
 ALTER TABLE `room_images`
-  ADD CONSTRAINT `room_images_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
+  ADD CONSTRAINT `room_images_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  ADD CONSTRAINT `testimonials_boarding_house_id_foreign` FOREIGN KEY (`boarding_house_id`) REFERENCES `boarding_houses` (`id`);
+  ADD CONSTRAINT `testimonials_boarding_house_id_foreign` FOREIGN KEY (`boarding_house_id`) REFERENCES `boarding_houses` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `transactions`
 --
 ALTER TABLE `transactions`
-  ADD CONSTRAINT `transactions_boarding_house_id_foreign` FOREIGN KEY (`boarding_house_id`) REFERENCES `boarding_houses` (`id`),
-  ADD CONSTRAINT `transactions_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
+  ADD CONSTRAINT `transactions_boarding_house_id_foreign` FOREIGN KEY (`boarding_house_id`) REFERENCES `boarding_houses` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `transactions_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
