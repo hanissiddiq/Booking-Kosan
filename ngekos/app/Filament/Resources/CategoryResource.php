@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class CategoryResource extends Resource
 {
@@ -24,6 +25,20 @@ class CategoryResource extends Resource
         return $form
             ->schema([
                 //
+                Forms\Components\FileUpload::make('image')
+                    ->image()
+                    ->directory('categories')
+                    ->required()
+                    ->columnSpan(2),
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        $set('slug', Str::slug($state));
+                    })
+                    ,
+                Forms\Components\Textarea::make('slug')
+                    ->required(),
             ]);
     }
 
@@ -32,12 +47,17 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 //
+                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('slug'),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

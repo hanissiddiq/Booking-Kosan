@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 05, 2026 at 02:38 AM
+-- Generation Time: Jan 05, 2026 at 02:56 AM
 -- Server version: 8.4.3
 -- PHP Version: 8.2.27
 
@@ -74,8 +74,8 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('356a192b7913b04c54574d18c28d46e6395428ab', 'i:1;', 1767580611),
-('356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1767580611;', 1767580611),
+('356a192b7913b04c54574d18c28d46e6395428ab', 'i:2;', 1767581774),
+('356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1767581774;', 1767581774),
 ('livewire-rate-limiter:a17961fa74e9275d529f489537f179c05d50c2f3', 'i:1;', 1767579072),
 ('livewire-rate-limiter:a17961fa74e9275d529f489537f179c05d50c2f3:timer', 'i:1767579072;', 1767579072);
 
@@ -105,6 +105,17 @@ CREATE TABLE `categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `image`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(4, 'categories/01KE6134ZB9BQMJQRFJ3SMCPAV.png', 'Hotel', 'hotel', '2026-01-04 19:52:00', '2026-01-04 19:52:00'),
+(5, 'categories/01KE613ZNMDE6WK5AVKZ7KWZXT.png', 'Villa', 'villa', '2026-01-04 19:52:28', '2026-01-04 19:52:28'),
+(6, 'categories/01KE615965H8NXGYG3VXQYWXD5.png', 'Apartemen', 'apartemen', '2026-01-04 19:53:10', '2026-01-04 19:53:10'),
+(7, 'categories/01KE619518YJQCX8S2DB4YGWCR.png', 'Guest House', 'guest-house', '2026-01-04 19:55:17', '2026-01-04 19:55:17'),
+(8, 'categories/01KE61AHBTF20ZKG4JATPMNNSS.png', 'Kos', 'kos', '2026-01-04 19:56:02', '2026-01-04 19:56:02');
 
 -- --------------------------------------------------------
 
@@ -274,7 +285,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('Fypu530vMdIHf3JQEo3rRzx2YhS4ydAATseL7BWc', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoib2lqUU9EalRaNXQ0c2JWSmI1MWJvUlZzOHB2dlFlVGJEQjBzUmt5aCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jaXRpZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEyJDN0SXhUNVRkSDNSa1BCa2M3Q3hidmUvMjVXZkY1SW8zYkd2RmViOXJQTnNrYWpJeDBnV3Y2IjtzOjg6ImZpbGFtZW50IjthOjA6e319', 1767580565);
+('Fypu530vMdIHf3JQEo3rRzx2YhS4ydAATseL7BWc', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoib2lqUU9EalRaNXQ0c2JWSmI1MWJvUlZzOHB2dlFlVGJEQjBzUmt5aCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jYXRlZ29yaWVzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMiQzdEl4VDVUZEgzUmtQQmtjN0N4YnZlLzI1V2ZGNUlvM2JHdkZlYjlyUE5za2FqSXgwZ1d2NiI7czo4OiJmaWxhbWVudCI7YTowOnt9fQ==', 1767581765);
 
 -- --------------------------------------------------------
 
@@ -479,7 +490,7 @@ ALTER TABLE `bonuses`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cities`
