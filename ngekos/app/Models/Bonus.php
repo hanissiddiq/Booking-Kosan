@@ -15,4 +15,9 @@ class Bonus extends Model
         'name',
         'description',
     ];
+
+    public function boardingHouse()
+    {
+        return $this->belongsTo(BoardingHouse::class);
+    }
 }
