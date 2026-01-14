@@ -11,4 +11,10 @@ class CityRepository implements CityRepositoryInterface
         // Logic to retrieve all cities
         return City::all();
     }
+
+    public function getCityBySlug($slug)
+    {
+        // Logic to retrieve a city by its slug
+        return City::where('slug', $slug)->first();
+    }
 }
