@@ -20,15 +20,14 @@ tabLinks.forEach(button => {
 const downPaymentPrice = document.getElementById('downPaymentPrice').textContent;
 const fullPaymentPrice = document.getElementById('fullPaymentPrice').textContent;
 const priceElement = document.getElementById('price');
-const paymentOptions = document.querySelectorAll('input[name="Payment"]');
+const paymentOptions = document.querySelectorAll('input[name="payment_method"]');
 
 // Function to update price based on the selected tab
 function updatePrice() {
-    const selectedPayment = document.querySelector('input[name="Payment"]:checked').value;
-
-    if (selectedPayment === 'down') {
+    const selectedPayment = document.querySelector('input[name="payment_method"]:checked').value;
+    if (selectedPayment === 'down_payment') {
         priceElement.innerHTML = `${downPaymentPrice}`;
-    } else if (selectedPayment === 'full') {
+    } else if (selectedPayment === 'full_payment') {
         priceElement.innerHTML = `${fullPaymentPrice}`;
     }
 }
