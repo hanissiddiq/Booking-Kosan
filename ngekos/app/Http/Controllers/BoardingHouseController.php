@@ -31,13 +31,21 @@ class BoardingHouseController extends Controller
         return view('pages.boarding-house.show', compact('boardingHouse'));
     }
 
-    public function find()
+    public function rooms($slug)
+    {
+        $boardingHouse = $this->boardingHouseRepository->getBoardingHouseBySlug($slug);
+
+        return view('pages.boarding-house.rooms', compact('boardingHouse'));
+    }
+
+     public function find()
     {
         $cities = $this->cityRepository->getAllCities();
         $categories = $this->categoryRepository->getAllCategories();
 
         return view('pages.boarding-house.find', compact('cities', 'categories'));
     }
+
     public function findResults(Request $request)
     {
 

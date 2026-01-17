@@ -13,6 +13,7 @@ Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categ
 Route::get('/city/{slug}', [CityController::class, 'show'])->name('city.show');
 
 Route::get('/kos/{slug}', [BoardingHouseController::class, 'show'])->name('kos.show');
+Route::get('/kos/{slug}/rooms', [BoardingHouseController::class, 'rooms'])->name('kos.rooms');
 
 Route::get('/find-kos', [BoardingHouseController::class, 'find'])->name('find-kos');
 Route::get('/find-results', [BoardingHouseController::class, 'findResults'])->name('find-kos.results');
