@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Interfaces\BoardingHouseRepositoryInterface;
 use App\Interfaces\TransactionRepositoryInterface;
 use App\Http\Requests\CustomerInformationStoreRequest;
+use Illuminate\Support\Str;
 
 
 use Illuminate\Http\Request;
@@ -76,6 +77,7 @@ public function __construct(
             $params = [
             'transaction_details' => [
                     'order_id' => $transaction->code,
+                    // 'order_id' => 'TRX-' . Str::uuid(),
                     'gross_amount' => $transaction->total_amount,
                 ],
             'customer_details' => [
@@ -83,7 +85,10 @@ public function __construct(
                     'email' => $transaction->email,
                     'phone' => $transaction->phone_number,
                 ],
-            ];
+            'callbacks' => [
+                    'finish' => secure_url('/booking-success'),
+                ],
+        ];
 
             $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
 
