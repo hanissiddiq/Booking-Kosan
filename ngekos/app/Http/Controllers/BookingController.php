@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Interfaces\BoardingHouseRepositoryInterface;
 use App\Interfaces\TransactionRepositoryInterface;
 use App\Http\Requests\CustomerInformationStoreRequest;
+use App\Http\Requests\BookingShowRequest;
 use Illuminate\Support\Str;
 
 
@@ -107,6 +108,22 @@ public function __construct(
 
     public function check()
     {
-        return view('pages.check-booking');
+        return view('pages.booking.check-booking');
+    }
+
+    public function show(BookingShowRequest $request)
+    {
+        $transaction = $this->transactionRepository->getTransactionByCodeEmailPhone(
+            $request->code,
+            $request->email,
+            $request->phone_number
+        );
+
+        if (!$transaction) {
+            return redirect()->back()->withErrors('error', 'Data Transaksi Tidak Ditemukan.');
+        }
+        // $data = $request->validated();
+        // Process the validated data
+        return view('pages.booking.detail', compact('transaction'));
     }
 }

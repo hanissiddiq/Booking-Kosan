@@ -8,4 +8,5 @@ interface TransactionRepositoryInterface
     public function saveTransaction($data);
 
     public function getTransactionByCode($code);
+    public function getTransactionByCodeEmailPhone($code, $email, $phone);
 }

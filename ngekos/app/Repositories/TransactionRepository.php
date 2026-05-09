@@ -36,6 +36,14 @@ class TransactionRepository implements \App\Interfaces\TransactionRepositoryInte
         return Transaction::where('code', $code)->first();
     }
 
+    public function getTransactionByCodeEmailPhone($code, $email, $phone)
+    {
+        return Transaction::where('code', $code)
+            ->where('email', $email)
+            ->where('phone_number', $phone)
+            ->first();
+    }
+
     private function prepareTransactionData($data, $room)
     {
         $data['code'] =$this->generateTransactionCode();
@@ -52,6 +60,8 @@ class TransactionRepository implements \App\Interfaces\TransactionRepositoryInte
         // return 'TRX-' . strtoupper(uniqid());
         return 'TRX-' . rand(100000, 999999);
     }
+
+
 
     private function calculateTotalAmount($pricePerMonth, $duration)
     {
