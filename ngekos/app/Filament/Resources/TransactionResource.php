@@ -49,7 +49,10 @@ class TransactionResource extends Resource
                 Forms\Components\Select::make('payment_status')
                     ->options([
                         'pending' => 'Pending',
-                        'paid' => 'Paid',
+                        'failed' => 'Failed',
+                        'expired' => 'Expired',
+                        'cancel' => 'Cancelled',
+                        'success' => 'Success',
                     ])
                     ->required(),
                 Forms\Components\DatePicker::make('start_date')
@@ -84,6 +87,8 @@ class TransactionResource extends Resource
                 //
             ])
             ->actions([
+
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
