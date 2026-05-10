@@ -52,7 +52,11 @@ class TestimonialResource extends Resource
         return $table
             ->columns([
                 //
-                Tables\Columns\ImageColumn::make('photo'),
+                Tables\Columns\ImageColumn::make('photo')->square()
+                ->size(50)
+                ->extraImgAttributes([
+                    'style' => 'object-fit: cover; border-radius: 8px;',
+                ]),
                 Tables\Columns\TextColumn::make('boardingHouse.name')->label('Boarding House'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('content')->limit(50),

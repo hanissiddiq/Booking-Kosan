@@ -49,7 +49,11 @@ class CityResource extends Resource
         return $table
             ->columns([
                 //
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image') ->square()
+                ->size(80)
+                ->extraImgAttributes([
+                    'style' => 'object-fit: cover; border-radius: 8px;',
+                ]),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('slug'),
             ])

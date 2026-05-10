@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Interfaces\BoardingHouseRepositoryInterface;
 use App\Interfaces\TransactionRepositoryInterface;
 use App\Http\Requests\CustomerInformationStoreRequest;
+use App\Http\Requests\BookingShowRequest;
+use Illuminate\Support\Str;
+
 
 use Illuminate\Http\Request;
 
@@ -58,10 +61,69 @@ public function __construct(
         return view('pages.booking.checkout', compact('boardingHouse', 'transaction', 'room'));
     }
 
+    public function payment(Request $request)
+    {
+        $this->transactionRepository->saveTransactionDataToSession($request->all());
+        $transaction = $this->transactionRepository->saveTransaction($this->transactionRepository->getTransactionDataFromSession());
 
+        // Set your Merchant Server Key
+            \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+            // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+            \Midtrans\Config::$isProduction = config('midtrans.isProduction');
+            // Set sanitization on (default)
+            \Midtrans\Config::$isSanitized = config('midtrans.isSanitized');
+            // Set 3DS transaction for credit card to true
+            \Midtrans\Config::$is3ds = config('midtrans.is3ds');
+
+            $params = [
+            'transaction_details' => [
+                    'order_id' => $transaction->code,
+                    // 'order_id' => 'TRX-' . Str::uuid(),
+                    'gross_amount' => $transaction->total_amount,
+                ],
+            'customer_details' => [
+                    'first_name' => $transaction->name,
+                    'email' => $transaction->email,
+                    'phone' => $transaction->phone_number,
+                ],
+            'callbacks' => [
+                    'finish' => secure_url('/booking-success'),
+                ],
+        ];
+
+            $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
+
+        return redirect($paymentUrl);
+    }
+
+    public function success(Request $request)
+    {
+        $transaction = $this->transactionRepository->getTransactionByCode($request->order_id);
+        if (!$transaction) {
+            return redirect()->route('home')->with('error', 'Transaction not found.');
+            // return 404;
+        }
+        return view('pages.booking.success', compact('transaction'));
+    }
 
     public function check()
     {
-        return view('pages.check-booking');
+        return view('pages.booking.check-booking');
+    }
+
+    public function show(BookingShowRequest $request)
+    {
+        $transaction = $this->transactionRepository->getTransactionByCodeEmailPhone(
+            $request->code,
+            $request->email,
+            $request->phone_number
+        );
+
+        if (!$transaction) {
+            return redirect()->back()->withErrors('error', 'Data Transaksi Tidak Ditemukan.');
+        }
+        // $data = $request->validated();
+        // Process the validated data
+        return view('pages.booking.detail', compact('transaction'));
     }
 }

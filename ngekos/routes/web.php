@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\BoardingHouseController;
+use App\Http\Controllers\HelpController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -21,8 +22,14 @@ Route::get('/kos/booking/{slug}/information', [BookingController::class, 'inform
 Route::post('/kos/booking/{slug}/information/save', [BookingController::class, 'saveInformation'])->name('booking.information.save');
 
 Route::get('/kos/booking/{slug}/checkout', [BookingController::class, 'checkout'])->name('booking.checkout');
+Route::post('/kos/booking/{slug}/payment', [BookingController::class, 'payment'])->name('booking.payment');
+
+Route::get('/booking-success', [BookingController::class, 'success'])->name('booking.success');
 
 Route::get('/find-kos', [BoardingHouseController::class, 'find'])->name('find-kos');
 Route::get('/find-results', [BoardingHouseController::class, 'findResults'])->name('find-kos.results');
 
 Route::get('/check-booking', [BookingController::class, 'check'])->name('check-booking');
+Route::post('/check-booking', [BookingController::class, 'show'])->name('check-booking.show');
+
+Route::get('/help', [HelpController::class, 'help'])->name('help');

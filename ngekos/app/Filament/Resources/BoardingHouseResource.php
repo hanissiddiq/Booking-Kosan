@@ -130,7 +130,12 @@ class BoardingHouseResource extends Resource
                 Tables\Columns\TextColumn::make('city.name')->label('Kota'),
                 Tables\Columns\TextColumn::make('category.name')->label('Kategori'),
                 Tables\Columns\TextColumn::make('price')->label('Harga (Rp.)'),
-                Tables\Columns\ImageColumn::make('thumbnail')->label('Thumbnail'),
+                Tables\Columns\ImageColumn::make('thumbnail')->label('Thumbnail')
+                ->square()
+                ->size(80)
+                ->extraImgAttributes([
+                    'style' => 'object-fit: cover; border-radius: 8px;',
+                ]),
             ])
             ->filters([
                 //
