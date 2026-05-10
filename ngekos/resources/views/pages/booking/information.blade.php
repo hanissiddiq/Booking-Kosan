@@ -89,13 +89,13 @@
                     @enderror
                 </div>
                 <div class="flex flex-col w-full gap-2 px-5">
-                    <p class="font-semibold">Phone No</p>
+                    <p class="font-semibold">Phone Number</p>
                     <label
                         class="flex items-center w-full rounded-full p-[14px_20px] gap-3 bg-white focus-within:ring-1 focus-within:ring-[#91BF77] transition-all duration-300 @error('phone') border-red-500  @enderror">
                         <img src="{{ asset('assets/images/icons/call.svg') }}" class="w-5 h-5 flex shrink-0" alt="icon">
                         <input type="tel" name="phone_number" id=""
                             class="appearance-none outline-none w-full font-semibold placeholder:text-ngekos-grey placeholder:font-normal"
-                            placeholder="Write your phone" value="{{old('phone_number')}}">
+                            placeholder="ex: 628123456789" value="{{old('phone_number')}}">
                     </label>
                     @error('phone_number')
                         <p class="text-sm text-red-500">{{ $message }}</p>
